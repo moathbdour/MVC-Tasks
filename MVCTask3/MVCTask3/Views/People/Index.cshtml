@@ -1,0 +1,131 @@
+﻿@model IEnumerable<MVCTask3.Models.Person>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<form method="post">
+    <div style=" width:70%;display:flex; justify-content:space-evenly">
+        <p>Search in: </p>
+        <div>
+            <input type="radio" id="first" name="drone" value="first"
+                   >
+            <label for="first">first name</label>
+        </div>
+
+        <div>
+            <input type="radio" id="last" name="drone" value="last">
+            <label for="last">last name</label>
+        </div>
+
+        <div>
+            <input type="radio" id="email" name="drone" value="email">
+            <label for="email">email</label>
+        </div>
+        <div>
+            <input type="radio" id="phone" name="drone" value="phone"
+                   >
+            <label for="phone">phone</label>
+        </div>
+
+        <div>
+            <input type="radio" id="age" name="drone" value="age">
+            <label for="age">age</label>
+        </div>
+
+        <div>
+            <input type="radio" id="job" name="drone" value="job">
+            <label for="job">job title</label>
+        </div>
+    </div>
+    <input type="text" id="txt" value="@Request.QueryString["txt"]" name="txt" />
+    <input type="submit" value="Search" class="brn btn-primary" />
+
+</form>
+<div>
+    @Html.Action("_LastOrder", "People")
+</div>
+<table class="table">
+    <tr>
+        <th>
+            First Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            E mail
+        </th>
+        <th>
+            Phone
+        </th>
+        <th>
+            Age
+        </th>
+        <th>
+            Job Title
+        </th>
+        <th>
+            Gender
+        </th>
+        <th>
+           Image
+        </th>
+        <th>
+           CV
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.First_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Last_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.E_mail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobTitle)
+        </td>
+        <td>
+            <div>
+                @if (item.Gender == null)
+                {
+                    <span>Not specified</span>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.GenderDisplay)
+                }
+            </div>
+        </td>
+        <td>
+            <img src="~/Images/@item.image" alt="@item.image" width="75" />
+        </td>
+        <td>
+            <a download href="~/CVS/@item.CV">download CV</a>
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+}
+
+</table>

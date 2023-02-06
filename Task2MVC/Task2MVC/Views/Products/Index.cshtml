@@ -6,22 +6,22 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<p >
+    @Html.ActionLink("Create New", "Create", new { id = "mp33" }, new { @class = "btn btn-warning" })
 </p>
-<table class="table">
+<table class="table table-striped table-hover table-responsive">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ProductName)
+           Product Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UnitPrice)
+            Unit Price
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UnitInStock)
+            Units In Stock
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Category.CategoryNAme)
+            Category Name
         </th>
         <th></th>
     </tr>
@@ -41,9 +41,9 @@
             @Html.DisplayFor(modelItem => item.Category.CategoryNAme)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProductID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProductID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProductID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProductID }, new { @class = "btn btn-success btn-responsive" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProductID }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProductID }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }

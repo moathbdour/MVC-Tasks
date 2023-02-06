@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MVCTask3.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a class="btn btn-warning" href="/Products/Create/mp33">Create New</a>
+</p>
+<table class="table table-striped table-hover table-responsive">
+    <tr>
+        <th>
+            Product Name
+        </th>
+        <th>
+            Unit Price
+        </th>
+        <th>
+            Units In Stock
+        </th>
+        <th>
+            Category Name
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <span>@item.ProductName</span>
+
+            </td>
+            <td>
+                <span>@item.UnitPrice</span>
+
+            </td>
+            <td>
+                <span>@item.UnitInStock</span>
+            </td>
+            <td>
+                <span>@item.Category.CategoryNAme</span>
+            </td>
+            <td>
+
+                <a class="btn btn-success btn-responsive" href="@Url.Action( "Edit", new { id = item.ProductID })">Edit</a> 
+                |
+                <a class="btn btn-warning" href="@Url.Action( "Details", new { id = item.ProductID })">Details</a>
+                |
+                <a class="btn btn-danger" href="@Url.Action( "Delete", new { id = item.ProductID })">Delete</a>
+
+            </td>
+        </tr>
+    }
+
+
+</table>
